@@ -6,9 +6,7 @@ class MovieInfoService {
       const client = clientFactory.get(apiName);
       const movies = await client.getMovieList(movieTitle);
       
-      return {
-        movies: movies
-      };
+      return { movies };
     } catch (error) {
       console.error('Error in MovieInfoService:', error.message);
       throw error;
