@@ -1,0 +1,19 @@
+{
+  "name": "movie-info-service",
+  "version": "0.0.1",
+  "description": "Movie Info REST API service",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": ["movie", "api", "omdb", "themoviedb"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1"
+  }
+}

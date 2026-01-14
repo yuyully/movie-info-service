@@ -1,42 +1,87 @@
 # Movie Info
-## using with ./mvnw
 
-### build && run
+A REST API service for fetching movie information from OMDB API and TheMovieDB API.
 
-./mvnw clean install; java -jar target/movie-info-0.0.1-SNAPSHOT.jar
+## Using with Node.js
 
-or
+### Prerequisites
+- Node.js 18 or higher
+- npm
 
-* ./mvnw clean install
-* ./mvnw spring-boot:run
+### Setup
 
+1. Install dependencies:
+```bash
+npm install
+```
 
-## using with docker
+2. Configure environment variables:
+Copy `.env.example` to `.env` and update the API keys if needed:
+```bash
+cp .env.example .env
+```
 
-### dockerhub
-https://cloud.docker.com/repository/docker/borkutip/movie-info
+### Run
 
-### build
-./mvnw install dockerfile:build
+```bash
+npm start
+```
 
-### run
-docker run -p 8080:8080 -t borkutip/movie-info:latest
+Or for development with auto-reload:
+```bash
+npm run dev
+```
 
-### stop
+## Using with Docker
+
+### Build
+```bash
+docker build -t movie-info:latest .
+```
+
+### Run
+```bash
+docker run -p 8080:8080 -t movie-info:latest
+```
+
+### Stop
+```bash
 docker ps
 docker stop [CONTAINER_ID]
+```
 
-### usage
-http://localhost:8080/movies/{title}?api={apiname}
-http://localhost:8080/movies/flux/{title}?api={apiname}
+## Usage
 
-where title: text to search in movie's title
-apiname: omdbapi or themoviedb
+### API Endpoints
 
-Examples:
+#### Search movies
+```
+GET /movies/{apiname}?title={title}
+```
 
-curl -i http://localhost:8080/movies/transformation?api=omdbapi
-curl -i http://localhost:8080/movies/transformation?api=themoviedb
-curl -i http://localhost:8080/movies/flux/transformation?api=omdbapi
+Where:
+- `apiname`: `omdbapi` or `themoviedb`
+- `title`: text to search in movie's title
+
+### Examples
+
+```bash
+curl -i http://localhost:8080/movies/omdbapi?title=transformation
+curl -i http://localhost:8080/movies/themoviedb?title=transformation
+```
+
+### Response Format
+
+```json
+{
+  "movies": [
+    {
+      "Title": "Movie Title",
+      "Year": "2020",
+      "Director": "Director Name"
+    }
+  ]
+}
+```
 
 
